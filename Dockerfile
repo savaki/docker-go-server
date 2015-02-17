@@ -1,10 +1,12 @@
 FROM dockerfile/java:oracle-java7
 MAINTAINER matt.ho@gmail.com
 
-ENV DEB_PACKAGE go-server-14.2.0-377.deb
+ENV DEB_PACKAGE go-server-14.4.0-1356.deb
 
-RUN wget -q http://dl.bintray.com/gocd/gocd-deb/${DEB_PACKAGE} 
-RUN dpkg -i ${DEB_PACKAGE} ; sed --in-place=bak 's/DAEMON=Y/DAEMON=N/' /etc/default/go-server
+RUN curl -o /tmp/${DEB_PACKAGE} -s -L http://dl.bintray.com/gocd/gocd-deb/${DEB_PACKAGE} ; \
+	dpkg -i /tmp/${DEB_PACKAGE} ; \
+	rm -f /tmp/${DEB_PACKAGE} ; \
+	sed --in-place=bak 's/DAEMON=Y/DAEMON=N/' /etc/default/go-server
 
 EXPOSE 8153
 EXPOSE 8154
