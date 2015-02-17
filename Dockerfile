@@ -11,4 +11,13 @@ RUN curl -o /tmp/${DEB_PACKAGE} -s -L http://dl.bintray.com/gocd/gocd-deb/${DEB_
 EXPOSE 8153
 EXPOSE 8154
 
+# externalize artifacts
+VOLUME [ "/data/artifacts" ]
+
+# externalize database
+VOLUME [ "/var/lib/go-server" ]
+
+# export log files
+VOLUME [ "/var/log/go-server" ]
+
 CMD [ "/usr/share/go-server/server.sh" ]
