@@ -21,3 +21,4 @@ VOLUME [ "/var/lib/go-server" ]
 VOLUME [ "/var/log/go-server" ]
 
 CMD [ "/usr/share/go-server/server.sh" ]
+
